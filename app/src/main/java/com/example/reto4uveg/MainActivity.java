@@ -23,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        generateTabs();
-
+        //generateTabs();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
 
     }
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         MenuItem menuItem = menu.findItem(R.id.optionSearch);
         SearchView searchView = (SearchView) menuItem.getActionView();
-
         searchView.setQueryHint("Buscar...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -53,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
         return true;
     }
-
+/*
     public void generateTabs() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -81,15 +78,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-    }
+    }*/
 
     public void refreshToolbar() {
-
-
         MutableLiveData<String> mText;
         mText = new MutableLiveData<>();
         mText.setValue("This new title");
-
     }
 
 
