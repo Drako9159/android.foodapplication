@@ -3,20 +3,22 @@ package com.example.reto4uveg;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.MutableLiveData;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.reto4uveg.tab.ViewPagerAdapter;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
+import com.example.reto4uveg.entity.Restaurant;
+import com.example.reto4uveg.entity.RestaurantAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,32 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        generateListRestaurants();
+    }
+
+    public void generateListRestaurants() {
+        ListView listView = (ListView) findViewById(R.id.listView);
+        ArrayList<Restaurant> restaurantArrayList = new ArrayList<>();
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
+
+
+        restaurantAdapter.add(new Restaurant(1, "La Fonda de Doña Mari"));
+        restaurantAdapter.add(new Restaurant(2, "Alegres comidas"));
+        restaurantAdapter.add(new Restaurant(3, "Antojitos Mexicanos"));
+        restaurantAdapter.add(new Restaurant(4, "Restaurante y Bar"));
+        restaurantAdapter.add(new Restaurant(5, "Comida Peruana"));
+        restaurantAdapter.add(new Restaurant(6, "Bebidas Divertidas"));
+        restaurantAdapter.add(new Restaurant(7, "Carnitas y más"));
+        restaurantAdapter.add(new Restaurant(8, "Las Quesadillas de Juanita"));
+        restaurantAdapter.add(new Restaurant(9, "Comida de Rancho"));
+        restaurantAdapter.add(new Restaurant(10, "Cocinando con Tequila"));
+        restaurantAdapter.add(new Restaurant(11, "El rincón enchilado"));
+        restaurantAdapter.add(new Restaurant(12, "Fajitas aztecas"));
+        restaurantAdapter.add(new Restaurant(13, "Puro sabor mexicano"));
+        restaurantAdapter.add(new Restaurant(14, "México en tu casa"));
+        restaurantAdapter.add(new Restaurant(15, "Nachos de Monterrey"));
+
+        listView.setAdapter(restaurantAdapter);
     }
 
     @Override
