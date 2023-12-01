@@ -1,8 +1,12 @@
 package com.example.reto4uveg;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //generateTabs();
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,18 +69,30 @@ public class MainActivity extends AppCompatActivity {
         MenuItem menuItem = menu.findItem(R.id.optionSearch);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Buscar...");
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(getApplicationContext(), "Buscando...", Toast.LENGTH_SHORT).show();
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
         });
+
+
+        /*View searchViewLayout= LayoutInflater.from(this).inflate(R.layout.search_view_layout, null);
+        androidx.appcompat.widget.SearchView searchView1 = searchViewLayout.findViewById(R.id.customSearchView);
+        ViewGroup rootView = findViewById(android.R.id.content);
+        rootView.addView(searchViewLayout);*/
+
+
+
+
+
+
         return true;
     }
 /*
