@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,23 +31,23 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_view_item, parent, false);
         }
 
-        TextView textViewName = (TextView) convertView.findViewById(R.id.textViewName);
-        textViewName.setText(restaurant.getName());
+        TextView tvRestaurantName = (TextView) convertView.findViewById(R.id.tvRestaurantName);
 
-
-        textViewName.setOnClickListener(new View.OnClickListener() {
+        tvRestaurantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //LayoutInflater.from(getContext()).inflate(R.layout.activity_detail_restaurant, parent, false);
-
                 Intent intent = new Intent(getContext(), DetailRestaurantActivity.class);
                 intent.putExtra("restaurant_name", restaurant.getName());
                 getContext().startActivity(intent);
-
                 Toast.makeText(getContext(), restaurant.getName(), Toast.LENGTH_SHORT).show();
             }
-
         });
+
+        tvRestaurantName.setText(restaurant.getName());
+
+
+
         return convertView;
         //return super.getView(position, convertView, parent);
     }

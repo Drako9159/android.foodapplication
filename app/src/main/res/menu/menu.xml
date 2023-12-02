@@ -10,4 +10,5 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always"
         app:tint="@color/secondary" />
+
 </menu>
