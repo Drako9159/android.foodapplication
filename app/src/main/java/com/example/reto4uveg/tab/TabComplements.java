@@ -1,14 +1,22 @@
 package com.example.reto4uveg.tab;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.reto4uveg.R;
+import com.example.reto4uveg.entity.DataListGenerator;
+import com.example.reto4uveg.entity.Food;
+import com.example.reto4uveg.entity.FoodAdapter;
+import com.example.reto4uveg.entity.FoodType;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +69,24 @@ public class TabComplements extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_complements, container, false);
+        /*return inflater.inflate(R.layout.fragment_tab_food, container, false);*/
+        View view = inflater.inflate(R.layout.fragment_tab_food, container, false);
+
+        RecyclerView recyclerView;
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        //recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+
+
+        ArrayList<Food> arrayListFood = new ArrayList<>(new DataListGenerator().getData().stream()
+                .filter(e -> e.getFoodType() == FoodType.COMPLEMENT_TYPE)
+                .collect(Collectors.toList()));
+
+
+        FoodAdapter foodAdapter = new FoodAdapter(arrayListFood);
+        recyclerView.setAdapter(foodAdapter);
+
+        return view;
     }
 }

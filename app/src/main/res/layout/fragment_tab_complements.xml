@@ -5,21 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".tab.TabComplements">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Complements"
-        android:textColor="@color/status_bar"
-        android:textSize="24dp" />
+        android:orientation="vertical">
 
-    <!--
-    <include
-        layout="@layout/recycler_view_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    
+    </LinearLayout>
 
 </FrameLayout>
