@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     ArrayList<Food> foodArrayList;
-    Food putExtraFood;
 
     public FoodAdapter(ArrayList<Food> foodArrayList) {
         this.foodArrayList = foodArrayList;
@@ -37,14 +36,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
-        putExtraFood = new Food(
+        holder.setViewElements(new Food(
                 foodArrayList.get(position).get_id(),
                 foodArrayList.get(position).getName(),
                 foodArrayList.get(position).getPrice(),
                 foodArrayList.get(position).getDescription(),
                 foodArrayList.get(position).getFoodType()
-        );
-        holder.setViewElements(putExtraFood);
+        ));
     }
 
     @Override
@@ -60,23 +58,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             super(itemView);
             tvFoodName = (TextView) itemView.findViewById(R.id.tvFoodName);
             tvFoodPrice = (TextView) itemView.findViewById(R.id.tvFoodPrice);
-
-            /*
-            tvFoodName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), DetailFoodActivity.class);
-                    intent.putExtra("food_name", putExtraFood.getName());
-                    intent.putExtra("food_description", putExtraFood.getDescription());
-                    intent.putExtra("food_price", "Precio: " + putExtraFood.getPrice().toString() + "$");
-                    itemView.getContext().startActivity(intent);
-                    Toast.makeText(itemView.getContext(), putExtraFood.getName(), Toast.LENGTH_SHORT).show();
-
-
-                }
-            });*/
         }
-
 
         public void setViewElements(Food food) {
             tvFoodName.setText(food.getName());
@@ -92,7 +74,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                     Toast.makeText(itemView.getContext(), food.getName(), Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
     }
 }

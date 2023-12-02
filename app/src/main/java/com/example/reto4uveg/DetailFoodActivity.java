@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,25 +20,44 @@ public class DetailFoodActivity extends AppCompatActivity {
         ivBack.setOnClickListener((b) -> onBackPressed());
 
         String foodName = getIntent().getStringExtra("food_name");
-        /*
         String foodPrice = getIntent().getStringExtra("food_price");
-        String foodDescription = getIntent().getStringExtra("food_description");*/
-
-        /*
-
+        String foodDescription = getIntent().getStringExtra("food_description");
         TextView tvFoodName = (TextView) findViewById(R.id.tvFoodName);
         TextView tvFoodPrice = (TextView) findViewById(R.id.tvFoodPrice);
         TextView tvFoodDescription = (TextView) findViewById(R.id.tvFoodDescription);
         tvFoodName.setText(foodName);
         tvFoodPrice.setText(foodPrice);
-        tvFoodDescription.setText(foodDescription);*/
+        tvFoodDescription.setText(foodDescription);
 
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvTitle.setText(foodName);
         tvTitle.setTextAppearance(R.style.Body);
 
+        assert foodName != null;
+        assignableIv(foodName.toLowerCase());
 
+    }
 
+    public void assignableIv(String foodName){
+        ImageView ivFood = (ImageView) findViewById(R.id.ivFood);
+        if(foodName.contains("pastel")){
+            ivFood.setImageResource(R.drawable.ic_pastel);
+        }
+        if(foodName.contains("hamburguesa")){
+            ivFood.setImageResource(R.drawable.ic_hamburguer);
+        }
+        if(foodName.contains("pizza")){
+            ivFood.setImageResource(R.drawable.ic_pizza);
+        }
+        if(foodName.contains("café")){
+            ivFood.setImageResource(R.drawable.ic_coffe);
+        }
+        if(foodName.contains("helado")){
+            ivFood.setImageResource(R.drawable.ic_ice_cream);
+        }
+        if(foodName.contains("nuggets")){
+            ivFood.setImageResource(R.drawable.ic_nuggets);
+        }
 
     }
 }
