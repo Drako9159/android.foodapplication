@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reto4uveg.R;
+import com.example.reto4uveg.adapters.FoodAdapter;
 import com.example.reto4uveg.entity.DataListGenerator;
 import com.example.reto4uveg.entity.Food;
-import com.example.reto4uveg.adapters.FoodAdapter;
 import com.example.reto4uveg.entity.FoodType;
 
 import java.util.ArrayList;
@@ -75,11 +75,9 @@ public class TabFood extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab_food, container, false);
 
         RecyclerView recyclerView;
-
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         //recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-
 
         ArrayList<Food> arrayListFood = new ArrayList<>(new DataListGenerator().getData().stream()
                 .filter(e -> e.getFoodType() == FoodType.FOOD_TYPE)

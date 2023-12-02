@@ -20,6 +20,11 @@ public class DataListGenerator {
         foodArrayList.add(new Food(11, "Helado Napolitano", 25.0, "230 ml, Prueba nuestro sabroso helado multisabor", FoodType.COMPLEMENT_TYPE));
         foodArrayList.add(new Food(12, "Helado de Galleta", 25.0, "230 ml, Prueba nuestro sabrodo helado con galleta Oreo", FoodType.COMPLEMENT_TYPE));
         foodArrayList.add(new Food(13, "Malteada de Chocolate", 35.0, "350 ml, Nuestra malteada de chocolate te refrescará el día", FoodType.DRINK_TYPE));
+        foodArrayList.add(new Food(14, "Café Americano", 25.0, "400 ml, Un Delicioso Café Americano para empezar tus mañanas", FoodType.DRINK_TYPE));
+        foodArrayList.add(new Food(15, "Nuggets de Pollo", 65.0, "2 Porción, Con nuestra salsa especial y aderesos no te quedes con las ganas", FoodType.FOOD_TYPE));
+        foodArrayList.add(new Food(16, "Pizza Familiar", 135.0, "Comparte con tu familia nuestra deliciosa Pizza", FoodType.FOOD_TYPE));
+
+
         return foodArrayList;
     }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     ArrayList<Food> foodArrayList;
-
     Food putExtraFood;
 
     public FoodAdapter(ArrayList<Food> foodArrayList) {
@@ -44,7 +44,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                 foodArrayList.get(position).getDescription(),
                 foodArrayList.get(position).getFoodType()
         );
-        holder.setTextViewName(foodArrayList.get(position).getName(), foodArrayList.get(position).getPrice().toString() + "$");
+        holder.setViewElements(putExtraFood);
     }
 
     @Override
@@ -56,28 +56,43 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         TextView tvFoodName;
         TextView tvFoodPrice;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvFoodName = (TextView) itemView.findViewById(R.id.tvFoodName);
             tvFoodPrice = (TextView) itemView.findViewById(R.id.tvFoodPrice);
 
+            /*
             tvFoodName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), DetailFoodActivity.class);
                     intent.putExtra("food_name", putExtraFood.getName());
-                    intent.putExtra("food_description", putExtraFood.getName());
-                    intent.putExtra("food_price", putExtraFood.getName());
+                    intent.putExtra("food_description", putExtraFood.getDescription());
+                    intent.putExtra("food_price", "Precio: " + putExtraFood.getPrice().toString() + "$");
                     itemView.getContext().startActivity(intent);
+                    Toast.makeText(itemView.getContext(), putExtraFood.getName(), Toast.LENGTH_SHORT).show();
+
+
                 }
-            });
+            });*/
         }
 
 
-        public void setTextViewName(String foodName, String foodPrice) {
-            tvFoodName.setText(foodName);
-            tvFoodPrice.setText(foodPrice);
+        public void setViewElements(Food food) {
+            tvFoodName.setText(food.getName());
+            tvFoodPrice.setText(food.getPrice().toString());
+            tvFoodName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), DetailFoodActivity.class);
+                    intent.putExtra("food_name", food.getName());
+                    intent.putExtra("food_description", food.getDescription());
+                    intent.putExtra("food_price", "Precio: " + food.getPrice().toString() + "$");
+                    itemView.getContext().startActivity(intent);
+                    Toast.makeText(itemView.getContext(), food.getName(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
     }
 }
