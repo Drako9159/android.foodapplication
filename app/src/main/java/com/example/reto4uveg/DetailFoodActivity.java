@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,25 +37,40 @@ public class DetailFoodActivity extends AppCompatActivity {
 
     }
 
-    public void assignableIv(String foodName){
+    public void assignableIv(String foodName) {
         ImageView ivFood = (ImageView) findViewById(R.id.ivFood);
-        if(foodName.contains("pastel")){
+        if (foodName.contains("pastel")) {
             ivFood.setImageResource(R.drawable.ic_pastel);
         }
-        if(foodName.contains("hamburguesa")){
+        if (foodName.contains("hamburguesa") | foodName.contains("tortas")) {
             ivFood.setImageResource(R.drawable.ic_hamburguer);
         }
-        if(foodName.contains("pizza")){
+        if (foodName.contains("pizza")) {
             ivFood.setImageResource(R.drawable.ic_pizza);
         }
-        if(foodName.contains("café")){
+        if (foodName.contains("café")) {
             ivFood.setImageResource(R.drawable.ic_coffe);
         }
-        if(foodName.contains("helado")){
+        if (foodName.contains("helado")) {
             ivFood.setImageResource(R.drawable.ic_ice_cream);
         }
-        if(foodName.contains("nuggets")){
+        if (foodName.contains("nuggets")) {
             ivFood.setImageResource(R.drawable.ic_nuggets);
+        }
+        if (foodName.contains("cerveza")) {
+            ivFood.setImageResource(R.drawable.ic_beer);
+        }
+        if (foodName.contains("tacos") | foodName.contains("carnitas")) {
+            ivFood.setImageResource(R.drawable.ic_tacos);
+        }
+        if (foodName.contains("huevos")) {
+            ivFood.setImageResource(R.drawable.ic_eggs);
+        }
+        if (foodName.contains("fruta")) {
+            ivFood.setImageResource(R.drawable.ic_fruit);
+        }
+        if (foodName.contains("refrescos")) {
+            ivFood.setImageResource(R.drawable.ic_soda);
         }
 
     }

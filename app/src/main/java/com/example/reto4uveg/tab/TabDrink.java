@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.reto4uveg.R;
-import com.example.reto4uveg.entity.DataListGenerator;
+import com.example.reto4uveg.entity.DataListFoodGenerator;
 import com.example.reto4uveg.entity.Food;
 import com.example.reto4uveg.adapters.FoodAdapter;
 import com.example.reto4uveg.entity.FoodType;
@@ -80,7 +80,7 @@ public class TabDrink extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
 
-        ArrayList<Food> arrayListFood = new ArrayList<>(new DataListGenerator().getData().stream()
+        ArrayList<Food> arrayListFood = new ArrayList<>(new DataListFoodGenerator().getData().stream()
                 .filter(e -> e.getFoodType() == FoodType.DRINK_TYPE)
                 .collect(Collectors.toList()));
 

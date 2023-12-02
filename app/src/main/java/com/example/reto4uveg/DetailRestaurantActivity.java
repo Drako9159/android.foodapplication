@@ -9,11 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.reto4uveg.tab.ViewPagerAdapter;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
-public class DetailRestaurantActivity extends AppCompatActivity {
+import java.util.Objects;
 
+public class DetailRestaurantActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class DetailRestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_restaurant);
 
         String restaurant = getIntent().getStringExtra("restaurant_name");
+
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvTitle.setText(restaurant);
         tvTitle.setTextAppearance(R.style.Body);
@@ -31,41 +32,26 @@ public class DetailRestaurantActivity extends AppCompatActivity {
 
         generateTabs();
 
-
-
-
     }
-
-    /*
-    public void generateListFood() {
-        ArrayList<String> userArrayList;
-        RecyclerView recyclerView;
-
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        userArrayList = new ArrayList<>();
-        userArrayList.add("Juan");
-        userArrayList.add("Mariana");
-        FoodAdapter foodAdapter = new FoodAdapter(userArrayList);
-        recyclerView.setAdapter(foodAdapter);
-
-    }*/
-
 
     public void generateTabs() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        TabItem tabFood = (TabItem) findViewById(R.id.tabFood);
-        TabItem tabDrink = (TabItem) findViewById(R.id.tabDrink);
-        TabItem tabComplement = (TabItem) findViewById(R.id.tabComplements);
-
-
-
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(viewPagerAdapter);
+
+        String footType = getIntent().getStringExtra("food_type");
+        if (Objects.equals(footType, "food_frame")) {
+            viewPager.setCurrentItem(0);
+        }
+        if (Objects.equals(footType, "drink_frame")) {
+            viewPager.setCurrentItem(1);
+        }
+        if (Objects.equals(footType, "complement_frame")) {
+            viewPager.setCurrentItem(2);
+        }
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

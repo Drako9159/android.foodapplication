@@ -18,21 +18,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_tab_food"
-        android:text="Food" />
+        android:text="COMIDA" />
 
     <com.google.android.material.tabs.TabItem
         android:id="@+id/tabDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_tab_drink"
-        android:text="Drinks" />
+        android:text="BEBIDA" />
 
     <com.google.android.material.tabs.TabItem
         android:id="@+id/tabComplements"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_tab_complement"
-        android:text="Complements" />
+        android:text="COMPLEMENTO" />
 
 
 </com.google.android.material.tabs.TabLayout>
