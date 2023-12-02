@@ -8,14 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto4uveg.entity.Restaurant;
-import com.example.reto4uveg.entity.RestaurantAdapter;
+import com.example.reto4uveg.adapters.RestaurantAdapter;
 
 import java.util.ArrayList;
 

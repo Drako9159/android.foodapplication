@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.example.reto4uveg.R;
 import com.example.reto4uveg.entity.DataListGenerator;
 import com.example.reto4uveg.entity.Food;
-import com.example.reto4uveg.entity.FoodAdapter;
+import com.example.reto4uveg.adapters.FoodAdapter;
 import com.example.reto4uveg.entity.FoodType;
 
 import java.util.ArrayList;

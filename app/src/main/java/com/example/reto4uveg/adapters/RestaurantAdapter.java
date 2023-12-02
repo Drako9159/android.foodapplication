@@ -1,4 +1,4 @@
-package com.example.reto4uveg.entity;
+package com.example.reto4uveg.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.example.reto4uveg.DetailRestaurantActivity;
 import com.example.reto4uveg.R;
+import com.example.reto4uveg.entity.Restaurant;
 
 import java.util.ArrayList;
 
