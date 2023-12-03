@@ -1,10 +1,16 @@
 package com.example.reto4uveg;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -19,6 +25,9 @@ public class DetailRestaurantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_restaurant);
+
+        // se establece el toolbar
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         String restaurant = getIntent().getStringExtra("restaurant_name");
 
@@ -70,5 +79,31 @@ public class DetailRestaurantActivity extends AppCompatActivity {
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.optionSearch);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Buscar...");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getApplicationContext(), "Buscando...", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
     }
 }

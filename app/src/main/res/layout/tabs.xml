@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_tab_complement"
-        android:text="COMPLEMENTO" />
+        android:text="EXTRAS" />
 
 
 </com.google.android.material.tabs.TabLayout>

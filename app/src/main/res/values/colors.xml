@@ -17,5 +17,7 @@
 
     <color name="red">#FF0000</color>
 
+    <color name="nuevo_color_fondo">#FF0000</color>
+
 
 </resources>

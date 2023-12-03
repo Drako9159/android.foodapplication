@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,10 +41,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         ArrayList<Restaurant> restaurantArrayList = new DataListRestaurantGenerator().getData();
         RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
-
         listView.setAdapter(restaurantAdapter);
-        TextView textView = (TextView) findViewById(R.id.tvRestaurantName);
-
         registerForContextMenu(listView);
     }
 
@@ -61,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Restaurant selectedRestaurant = (Restaurant) listView.getItemAtPosition(info.position);
-
 
         if (item.getItemId() == R.id.itemFood) {
             Intent intent = new Intent(this, DetailRestaurantActivity.class);
@@ -88,11 +83,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         MenuItem menuItem = menu.findItem(R.id.optionSearch);
         SearchView searchView = (SearchView) menuItem.getActionView();
+
+
         searchView.setQueryHint("Buscar...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -108,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         });
         return true;
     }
+
+
 
 
 }

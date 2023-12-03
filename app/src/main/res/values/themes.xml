@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Reto4UVEG" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -6,9 +6,18 @@
         <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:navigationBarColor">@color/status_bar</item>
 
+        
+
     </style>
 
     <style name="Theme.Reto4UVEG" parent="Base.Theme.Reto4UVEG" />
+
+
+
+    <style name="MyPopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/secondary</item>
+    </style>
+
 
     <style name="Title">
         <item name="android:textStyle">bold</item>
@@ -29,4 +38,6 @@
     <style name="CustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textColor">@color/toolbar_color</item>
     </style>
+
+
 </resources>

@@ -3,16 +3,14 @@
 
     <item
         android:id="@+id/itemFood"
-        android:iconTint="@color/secondary"
         android:title="COMIDA" />
 
     <item
         android:id="@+id/itemDrink"
-        android:iconTint="@color/secondary"
         android:title="BEBIDA" />
+
     <item
         android:id="@+id/itemComplement"
-        android:iconTint="@color/secondary"
         android:title="COMPLEMENTO" />
 
 </menu>

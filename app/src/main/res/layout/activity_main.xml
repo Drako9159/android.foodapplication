@@ -6,29 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--
-    <FrameLayout
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/toolbar_color"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Restaurantes" />
-
-
-
-    </FrameLayout>-->
-
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
@@ -42,11 +19,10 @@
 
     <ListView
         android:id="@+id/listView"
-        android:longClickable="true"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         android:background="@color/status_bar"
+        android:longClickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
