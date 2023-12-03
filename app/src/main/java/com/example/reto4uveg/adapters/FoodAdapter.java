@@ -62,7 +62,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         public void setViewElements(Food food) {
             tvFoodName.setText(food.getName());
-            tvFoodPrice.setText(food.getPrice().toString());
+            tvFoodPrice.setText(food.getPrice().toString() + "$");
             tvFoodName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

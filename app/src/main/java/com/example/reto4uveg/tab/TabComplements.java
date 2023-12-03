@@ -2,21 +2,26 @@ package com.example.reto4uveg.tab;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reto4uveg.R;
+import com.example.reto4uveg.adapters.FoodAdapter;
 import com.example.reto4uveg.entity.DataListFoodGenerator;
 import com.example.reto4uveg.entity.Food;
-import com.example.reto4uveg.adapters.FoodAdapter;
 import com.example.reto4uveg.entity.FoodType;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +29,9 @@ import java.util.stream.Collectors;
  * create an instance of this fragment.
  */
 public class TabComplements extends Fragment {
+
+    private FoodAdapter foodAdapter;
+    private RecyclerView recyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,6 +71,7 @@ public class TabComplements extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -71,22 +80,54 @@ public class TabComplements extends Fragment {
         // Inflate the layout for this fragment
         /*return inflater.inflate(R.layout.fragment_tab_food, container, false);*/
         View view = inflater.inflate(R.layout.fragment_tab_food, container, false);
-
-        RecyclerView recyclerView;
-
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         //recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-
-
-        ArrayList<Food> arrayListFood = new ArrayList<>(new DataListFoodGenerator().getData().stream()
-                .filter(e -> e.getFoodType() == FoodType.COMPLEMENT_TYPE)
-                .collect(Collectors.toList()));
-
-
-        FoodAdapter foodAdapter = new FoodAdapter(arrayListFood);
-        recyclerView.setAdapter(foodAdapter);
-
+        generateListFood();
         return view;
     }
+
+    public void generateListFood() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        foodAdapter = new FoodAdapter(DataListFoodGenerator.getDataByFoodType(FoodType.COMPLEMENT_TYPE));
+        recyclerView.setAdapter(foodAdapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.optionSearch);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Buscar complemento...");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Toast.makeText(getContext(), "Buscando...", Toast.LENGTH_SHORT).show();
+                ArrayList<Food> foodArrayList = DataListFoodGenerator.getDataByFoodType(FoodType.COMPLEMENT_TYPE);
+                boolean isFound = false;
+                assert foodArrayList != null;
+                for (Food food : foodArrayList) {
+                    if (food.getName().toLowerCase().contains(query.toLowerCase())) {
+                        isFound = true;
+                        Toast.makeText(getContext(), "Encontrado " + query, Toast.LENGTH_SHORT).show();
+                        ArrayList<Food> resTest = new ArrayList<>();
+                        resTest.add(food);
+                        foodAdapter = new FoodAdapter(resTest);
+                        recyclerView.setAdapter(foodAdapter);
+                    }
+                }
+                if (!isFound) {
+                    Toast.makeText(getContext(), "No se encontró", Toast.LENGTH_SHORT).show();
+                    generateListFood();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
 }

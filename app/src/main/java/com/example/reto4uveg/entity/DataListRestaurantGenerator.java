@@ -3,7 +3,7 @@ package com.example.reto4uveg.entity;
 import java.util.ArrayList;
 
 public class DataListRestaurantGenerator {
-    public ArrayList<Restaurant> getData() {
+    public static ArrayList<Restaurant> getData() {
         ArrayList<Restaurant> restaurantArrayList = new ArrayList<>();
         restaurantArrayList.add(new Restaurant(1, "La Fonda de Doña Mari"));
         restaurantArrayList.add(new Restaurant(2, "Alegres comidas"));

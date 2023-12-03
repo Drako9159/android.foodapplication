@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public ListView listView;
+    private RestaurantAdapter restaurantAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void generateListRestaurants() {
         listView = (ListView) findViewById(R.id.listView);
-        ArrayList<Restaurant> restaurantArrayList = new DataListRestaurantGenerator().getData();
-        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
+        ArrayList<Restaurant> restaurantArrayList = DataListRestaurantGenerator.getData();
+        restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
         listView.setAdapter(restaurantAdapter);
         registerForContextMenu(listView);
     }
@@ -84,19 +85,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         MenuItem menuItem = menu.findItem(R.id.optionSearch);
         SearchView searchView = (SearchView) menuItem.getActionView();
 
-
-        searchView.setQueryHint("Buscar...");
+        searchView.setQueryHint("Buscar restaurante...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getApplicationContext(), "Buscando...", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Buscando..." + query, Toast.LENGTH_SHORT).show();
+                ArrayList<Restaurant> restaurantArrayList = DataListRestaurantGenerator.getData();
+                boolean isFound = false;
+                for (Restaurant restaurant : restaurantArrayList) {
+                    if (restaurant.getName().toLowerCase().contains(query.toLowerCase())) {
+                        isFound = true;
+                        Toast.makeText(MainActivity.this, "Encontrado " + query, Toast.LENGTH_SHORT).show();
+                        ArrayList<Restaurant> resTest = new ArrayList<>();
+                        resTest.add(restaurant);
+                        restaurantAdapter = new RestaurantAdapter(MainActivity.this, resTest);
+                        listView.setAdapter(restaurantAdapter);
+                    }
+                }
+                if (!isFound) {
+                    Toast.makeText(MainActivity.this, "No se encontró", Toast.LENGTH_SHORT).show();
+                    generateListRestaurants();
+                }
                 return false;
             }
 
@@ -107,8 +123,6 @@ public class MainActivity extends AppCompatActivity {
         });
         return true;
     }
-
-
 
 
 }

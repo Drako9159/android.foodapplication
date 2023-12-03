@@ -31,11 +31,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_view_item, parent, false);
         }
-
         TextView tvRestaurantName = (TextView) convertView.findViewById(R.id.tvRestaurantName);
-
-
-
         tvRestaurantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,17 +39,10 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
                 Intent intent = new Intent(getContext(), DetailRestaurantActivity.class);
                 intent.putExtra("restaurant_name", restaurant.getName());
                 getContext().startActivity(intent);
-
-
-
-
                 Toast.makeText(getContext(), restaurant.getName(), Toast.LENGTH_SHORT).show();
             }
         });
-
         tvRestaurantName.setText(restaurant.getName());
-
-
 
         return convertView;
         //return super.getView(position, convertView, parent);

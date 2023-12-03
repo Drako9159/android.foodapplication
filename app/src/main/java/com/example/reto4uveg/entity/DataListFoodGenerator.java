@@ -1,9 +1,10 @@
 package com.example.reto4uveg.entity;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class DataListFoodGenerator {
-    public ArrayList<Food> getData() {
+    public static ArrayList<Food> getData() {
         ArrayList<Food> foodArrayList = new ArrayList<>();
         foodArrayList.add(new Food(1, "Carnitas Michoacán", 129.9, "1Kg, Excelentes carnitas al estilo michoacán", FoodType.FOOD_TYPE));
         foodArrayList.add(new Food(2, "Tacos dorados", 12.9, "1 Porción, Tacos preparados con ensalada", FoodType.FOOD_TYPE));
@@ -26,6 +27,25 @@ public class DataListFoodGenerator {
         foodArrayList.add(new Food(19, "Fruta de temporada", 10.0, "Alimentate sanamente con nuestra fruta de temporada", FoodType.FOOD_TYPE));
         foodArrayList.add(new Food(20, "Refrescos", 16.0, "Acompaña tus comidas con bebida de tu preferencia", FoodType.DRINK_TYPE));
         return foodArrayList;
+    }
+
+    public static ArrayList<Food> getDataByFoodType(FoodType foodType) {
+        if (foodType.equals(FoodType.FOOD_TYPE)) {
+            return new ArrayList<>(new DataListFoodGenerator().getData().stream()
+                    .filter(e -> e.getFoodType() == FoodType.FOOD_TYPE)
+                    .collect(Collectors.toList()));
+        }
+        if (foodType.equals(FoodType.DRINK_TYPE)) {
+            return new ArrayList<>(new DataListFoodGenerator().getData().stream()
+                    .filter(e -> e.getFoodType() == FoodType.DRINK_TYPE)
+                    .collect(Collectors.toList()));
+        }
+        if (foodType.equals(FoodType.COMPLEMENT_TYPE)) {
+            return new ArrayList<>(new DataListFoodGenerator().getData().stream()
+                    .filter(e -> e.getFoodType() == FoodType.COMPLEMENT_TYPE)
+                    .collect(Collectors.toList()));
+        }
+        return null;
     }
 
 }
