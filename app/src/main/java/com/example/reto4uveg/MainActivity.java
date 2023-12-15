@@ -90,10 +90,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         MenuItem menuItem = menu.findItem(R.id.optionSearch);
         SearchView searchView = (SearchView) menuItem.getActionView();
-
         searchView.setQueryHint("Buscar restaurante...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Toast.makeText(getApplicationContext(), "Buscando..." + query, Toast.LENGTH_SHORT).show();
